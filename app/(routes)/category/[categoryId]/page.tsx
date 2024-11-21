@@ -11,18 +11,21 @@ import ProductCard from "@/components/ui/product-card";
 import MobileFilters from "./components/mobile-filters";
 
 type CategoryPageParams = Promise<{ categoryId: string }>;
+type SearchParams = Promise<{ colorId?: string , sizeId?: string  }>;
 
 interface CategoryPageProps {
   params: CategoryPageParams,
-  searchParams: { colorId?: string, sizeId?: string }
+  searchParams: SearchParams,
 }
 
 const CategoryPage = async ({ params, searchParams }: CategoryPageProps) => {
   const { categoryId } = await params;
+  const { colorId, sizeId } = await searchParams;
+
   const products = await getProducts({
     categoryId,
-    colorId : searchParams.colorId,
-    sizeId: searchParams.sizeId,
+    colorId : colorId,
+    sizeId: sizeId,
   });
   const sizes = await getSizes();
   const colors = await getColors();

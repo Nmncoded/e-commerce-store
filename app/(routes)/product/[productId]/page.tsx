@@ -13,7 +13,7 @@ const ProductPage = async ({ params }: { params: ProductPageParams }) => {
   const product = await getProduct(productId);
   const suggestedProducts = await getProducts({ categoryId: product?.category?.id });
 
-  console.log(productId, product, suggestedProducts);
+  // console.log(productId, product, suggestedProducts);
 
   return <div className="bg-white" >
     <Container>
